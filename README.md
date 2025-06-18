@@ -12,6 +12,7 @@ Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **de
 │ └── artifacts/ # Pesos del modelo entrenado y encoder
 │ ├── model.pt
 │ └── encoder.pkl
+│ └── explainer.pkl
 │
 ├── inference_API/ # Interfaz cliente para consumir la API
 │ ├── web_app.py # Interfaz de usuario
@@ -26,9 +27,9 @@ Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **de
 
 Este sistema está compuesto por:
 
-- 🧠 **Modelo de detección de fraude/daños** entrenado con imágenes.
+- 🧠 **Modelo de detección de fraude/daños** entrenado con registros tabulares.
 - 🔁 **API de inferencia** en FastAPI para servir el modelo.
-- 💻 **Interfaz visual** que permite subir imágenes y obtener predicciones.
+- 💻 **Interfaz visual** que permite subir registros y obtener predicciones y explicaciones (con los explainers de SHAP) de las mismas en forma de lenguaje natural usando LLM.
 - 🐳 Contenedores Docker para un despliegue completo con `docker-compose`.
 
 ---
@@ -62,6 +63,7 @@ Todo el proceso de entrenamiento, validación y pruebas de hiperparámetros est�
 Incluye:
 Análisis exploratorio de variables
 Pruebas de MLPs con entrenamiento en detección de fraude
+Explicabilidad
 Selección del final
 
 Exportación de pesos (model.pt)
@@ -74,10 +76,11 @@ model.pt: pesos del modelo
 
 encoder.pkl: encoder para clases o preprocesamiento
 
+explainer.pkl: explainer para la explicabilidad
+
 📦 API Endpoints
-(Asumiendo que usas FastAPI)
 
-POST /predict: recibe una imagen y devuelve predicción
+POST /predict_fraud: recibe un registro y devuelve predicción
 
-GET /docs: documentación interactiva vía Swagger
+GET /docs: documentación interactiva para incluir el registro
 
