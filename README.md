@@ -1,12 +1,12 @@
 # TFM - Detección de Fraude Vehicular con Deep Learning
 
-Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **detección automática de fraudes o daños en vehículos** a partir de imágenes, usando técnicas de visión por computador, redes neuronales profundas y despliegue vía APIs.
+Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **detección automática de fraude en aperturas de cuentas bancarias** a partir de imágenes, usando técnicas de visión por computador, redes neuronales profundas y despliegue vía APIs.
 
 ---
 
 ## 📁 Estructura del Proyecto
 ├── API/ # Backend de inferencia
-│ ├── app.py # Código principal de la API
+│ ├── inference_api.py # Código principal de la API
 │ ├── Dockerfile # Imagen Docker para la API
 │ ├── requirements.txt # Dependencias para la API
 │ └── artifacts/ # Pesos del modelo entrenado y encoder
@@ -14,7 +14,7 @@ Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **de
 │ └── encoder.pkl
 │
 ├── inference_API/ # Interfaz cliente para consumir la API
-│ ├── inference_api.py # Interfaz de usuario
+│ ├── web_app.py # Interfaz de usuario
 │ ├── Dockerfile # Imagen Docker para frontend
 │ └── requirements.txt # Dependencias para el frontend
 │
