@@ -1,56 +1,83 @@
+# TFM - Detección de Fraude Vehicular con Deep Learning
+
+Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **detección automática de fraudes o daños en vehículos** a partir de imágenes, usando técnicas de visión por computador, redes neuronales profundas y despliegue vía APIs.
+
+---
+
+## 📁 Estructura del Proyecto
+├── API/ # Backend de inferencia
+│ ├── app.py # Código principal de la API
+│ ├── Dockerfile # Imagen Docker para la API
+│ ├── requirements.txt # Dependencias para la API
+│ └── artifacts/ # Pesos del modelo entrenado y encoder
+│ ├── model.pt
+│ └── encoder.pkl
+│
+├── inference_API/ # Interfaz cliente para consumir la API
+│ ├── inference_api.py # Interfaz de usuario
+│ ├── Dockerfile # Imagen Docker para frontend
+│ └── requirements.txt # Dependencias para el frontend
+│
+├── tfm_modelo.ipynb # Notebook completo de entrenamiento
+├── docker-compose.yml # Orquestación de los contenedores
+└── README.md # Este archivo
+
+## 🔍 Descripción
+
+Este sistema está compuesto por:
+
+- 🧠 **Modelo de detección de fraude/daños** entrenado con imágenes.
+- 🔁 **API de inferencia** en FastAPI para servir el modelo.
+- 💻 **Interfaz visual** que permite subir imágenes y obtener predicciones.
+- 🐳 Contenedores Docker para un despliegue completo con `docker-compose`.
+
+---
+
+## 🚀 Instrucciones de uso
+
+### 🔧 Requisitos
+
+- Docker
+- Docker Compose
+
 ### 🐳 Despliegue con Docker Compose
 
-Este proyecto contiene dos servicios principales:
+Desde la raíz del proyecto:
 
-- `api`: Servicio backend para la inferencia del modelo.
-- `web`: Interfaz web para interacción con el modelo desplegado.
-
-#### ⚙️ Estructura del `docker-compose.yml`
-
-```yaml
-version: '3.8'
-
-services:
-  api:
-    image: fraud-classification-tfm:latest
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
-    environment:
-      API_PORT: 8000
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
-      interval: 5s
-      timeout: 3s
-      retries: 5
-
-  web:
-    image: web-fraud-classification-tfm
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    depends_on:
-      api:
-        condition: service_healthy
-    environment:
-      WEB_APP_PORT: 8080
-      API_HOST: api
-      API_PORT: 8000
-▶️ Cómo ejecutarlo
-Desde la raíz del repositorio, ejecuta:
-
-bash
-Copiar
-Editar
+```bash
 docker-compose up --build
-Luego, accede a:
+Esto levanta:
 
-API: http://localhost:8000/docs
+api: servicio de inferencia (API/)
 
-Web: http://localhost:8080
+inference_api: interfaz de usuario (inference_API/)
 
-Asegúrate de que ./api y ./frontend contengan sus respectivos Dockerfile y requirements.txt.
+Accede a la interfaz desde tu navegador en http://localhost:8000 (o el puerto definido).
+
+🏋️‍♀️ Entrenamiento del modelo
+Todo el proceso de entrenamiento, validación y pruebas de hiperparámetros está documentado en:
+
+📓 tfm_training.ipynb
+
+Incluye:
+Análisis exploratorio de variables
+Pruebas de MLPs con entrenamiento en detección de fraude
+Selección del final
+
+Exportación de pesos (model.pt)
+🧪 Artifacts
+Los modelos entrenados y transformadores necesarios para la inferencia están guardados en:
+
+📁 API/artifacts/
+
+model.pt: pesos del modelo
+
+encoder.pkl: encoder para clases o preprocesamiento
+
+📦 API Endpoints
+(Asumiendo que usas FastAPI)
+
+POST /predict: recibe una imagen y devuelve predicción
+
+GET /docs: documentación interactiva vía Swagger
+
