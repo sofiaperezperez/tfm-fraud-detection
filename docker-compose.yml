@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  #vllm-server:
+  #  image: vllm/vllm-openai:v0.8.1
+  #  runtime: nvidia
+  #  ports:
+  #    - "8833:8000"
+  #  environment:
+  #    HUGGING_FACE_HUB_TOKEN: ${HUGGINGFACE_HUB_TOKEN}
+  #    API_KEY: ${API_KEY}
+  #    CUDA_VISIBLE_DEVICES: 0
+  #    CUDA_DEVICE_ORDER: PCI_BUS_ID
+  #  command: >
+  #    --model ${MODEL_ID}
+  #    --gpu-memory-utilization 0.9
+  #    --max-model-len 2048
+  #    --port 8000
+  #  deploy:
+  #    resources:
+  #      reservations:
+  #        devices:
+  #          - capabilities: [gpu]
+  #  ipc: host
+
+  api:
+      image: fraud-classification-tfm:latest  # Si ya tienes una imagen, puedes usarla directamente
+      build: # o se puede construir desde el Dockerfile
+        context: ./api
+        dockerfile: Dockerfile
+      ports:
+        - "8000:8000" # exposición en el host
+      environment:
+        API_PORT: 8000
+      healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
+        interval: 5s
+        timeout: 3s
+        retries: 5
+  web:
+    image: web-fraud-classification-tfm   
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile 
+    ports:
+      - "8080:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      WEB_APP_PORT: 8080
+      API_HOST: api
+      API_PORT: 8000
+
+  # To-Do: Crear un servicio con tu servidor. Debe tener:
+  # - Los ficheros de Python necesarios para tu servidor.
+  # - Un Dockerfile que instale las dependencias necesarias.
+  # - Un comando que inicie tu servidor.
+  # - La SERVER_URL del servidor vLLM y el API_KEY como variables de entorno.

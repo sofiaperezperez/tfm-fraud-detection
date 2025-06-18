@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Texto explicativo del resultado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #80977e;
+            padding: 2rem;
+            color: #333;
+        }
+        .resultado {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #3c6408;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+        .btn-custom {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background-color: #115f34;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .btn-custom:hover {
+            background-color: #02503f;
+        }
+    </style>
+</head>
+<body>
+    <div class="resultado">
+        <h1>Hemos preguntado a un modelo de lenguaje: ¿Por qué es fraudulento? A continuación se muestra su respuesta</h1>
+        <p>{{ prediccion | safe }}</p>
+    <form action="/posibles_cambios" method="POST" style="text-align:center; margin-top:1.5rem;">
+      <!-- Serializamos el dict de SHAP como JSON en un hidden -->
+      <input 
+        type="hidden" 
+        name="local_shap_json" 
+        value='{{ shap_values | tojson }}'
+      >
+      <input 
+        type="hidden" 
+        name="valores_registro_json" 
+        value='{{ valores_registro | tojson }}'
+      >
+        <button type="submit" class="btn-custom">
+        ¿Qué modificar para que no sea fraudulento?
+      </button>
+    </form>
+    </div>
+</body>
+</html>

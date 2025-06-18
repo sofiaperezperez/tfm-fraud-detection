@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Posibles sugerencias a añadir</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #80977e;
+            padding: 2rem;
+            color: #333;
+        }
+        .resultado {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #3c6408;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+        .btn-custom {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background-color: #115f34;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .btn-custom:hover {
+            background-color: #02503f;
+        }
+    </style>
+</head>
+<body>
+    <div class="resultado">
+        <h1>Hemos preguntado a un modelo de lenguaje: ¿Qué variables modificar para que no sea fraudulento? </h1>
+        <h3> A continuación se muestra su respuesta</h3>
+        <p>{{ sugerencias | safe }}</p>
+    </div>
+    <form action="/" method="GET" style="text-align:center; margin-top:1.5rem;">
+      <!-- Serializamos el dict de SHAP como JSON en un hidden -->
+      
+        <button type="submit" class="btn-custom">
+        Estudiar otra solicitud
+      </button>
+    </form>
+</body>
+</html>

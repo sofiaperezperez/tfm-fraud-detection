@@ -1,0 +1,15 @@
+pandas
+torch
+numpy
+pytorch_tabnet
+shap
+joblib
+openai
+dotenv
+category_encoders
+uvicorn
+fastapi
+pydantic
+flask
+requests
+markdown
