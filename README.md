@@ -1,6 +1,6 @@
 # TFM - Detección de Fraude Vehicular con Deep Learning
 
-Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **detección automática de fraude en aperturas de cuentas bancarias** a partir de imágenes, usando técnicas de visión por computador, redes neuronales profundas y despliegue vía APIs.
+Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **detección automática de fraude en aperturas de cuentas bancarias** a partir de imágenes, usando técnicas de redes neuronales profundas y despliegue vía APIs.
 
 ---
 
