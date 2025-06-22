@@ -31,7 +31,10 @@ services:
       ports:
         - "8000:8000" # exposición en el host
       environment:
-        API_PORT: 8000
+        API_PORT: ${API_PORT}
+        VLLM_API_KEY: ${VLLM_API_KEY}
+        VLLM_SERVER_URL: ${VLLM_SERVER_URL}
+        VLLM_MODEL_ID: ${VLLM_MODEL_ID}
       healthcheck:
         test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
         interval: 5s
@@ -48,9 +51,12 @@ services:
       api:
         condition: service_healthy
     environment:
-      WEB_APP_PORT: 8080
-      API_HOST: api
-      API_PORT: 8000
+      WEB_APP_PORT: ${WEB_APP_PORT}
+      API_HOST: ${API_HOST}
+      API_PORT: ${API_PORT}
+      VLLM_API_KEY: ${VLLM_API_KEY}
+      VLLM_SERVER_URL: ${VLLM_SERVER_URL}
+      VLLM_MODEL_ID: ${VLLM_MODEL_ID}
 
   # To-Do: Crear un servicio con tu servidor. Debe tener:
   # - Los ficheros de Python necesarios para tu servidor.
