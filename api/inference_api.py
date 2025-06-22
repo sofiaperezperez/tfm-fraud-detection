@@ -98,11 +98,11 @@ class FraudData(BaseModel):
 
 # Cargar artefactos guardados
 clf = TabNetClassifier()
-clf.load_model("api/artifacts/modelo_tabnet_reduccion_vars.zip")
-model_wrapper = torch.load("api/artifacts/model_wrapper_full.pth", weights_only=False)
+clf.load_model("artifacts/modelo_tabnet_reduccion_vars.zip")
+model_wrapper = torch.load("artifacts/model_wrapper_full.pth", weights_only=False)
 model_wrapper.eval()
-explainer = joblib.load('api/artifacts/explainer_gradient_shap_tabnet_reduccion_vars.pkl')
-encoder = joblib.load("api/artifacts/target_encoder.pkl")
+explainer = joblib.load('artifacts/explainer_gradient_shap_tabnet_reduccion_vars.pkl')
+encoder = joblib.load("artifacts/target_encoder.pkl")
 # Columnas categóricas y numéricas (según el preprocesamiento)
 cols_categ = ['payment_type', 'employment_status', 'housing_status', 'source', 'device_os', 
               'keep_alive_session', 'email_is_free', 
@@ -210,11 +210,9 @@ async def predict_fraud(data: FraudData):
 
     print(prompt)
 
-    ENV_CONFIG = dotenv_values(".env")
-    API_KEY = ENV_CONFIG.get("OPENAI_API_KEY")
-    SERVER_URL = ENV_CONFIG.get("SERVER_URL", "http://http://g4.etsisi.upm.es:8833/v1")
-    MODEL_ID = ENV_CONFIG.get("MODEL_ID", "meta-llama/Llama-3.1-8B-Instruct")
-
+    API_KEY = os.environ.get("VLLM_API_KEY")
+    SERVER_URL = os.environ.get("VLLM_SERVER_URL", "http://g4.etsisi.upm.es:8833/v1")
+    MODEL_ID = os.environ.get("VLLM_MODEL_ID", "meta-llama/Llama-3.1-8B-Instruct")
     client = OpenAI(
         api_key=API_KEY,
         base_url=SERVER_URL,
