@@ -1,4 +1,4 @@
-# TFM - Detección de Fraude Vehicular con Deep Learning
+# TFM - Detección de Fraude Bancario con Deep Learning
 
 Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **detección automática de fraude en aperturas de cuentas bancarias** a partir de imágenes, usando técnicas de redes neuronales profundas y despliegue vía APIs.
 
@@ -29,7 +29,7 @@ Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **de
 
 Este sistema está compuesto por:
 
-- 🧠 **Modelo de detección de fraude/daños** entrenado con registros tabulares.
+- 🧠 **Modelo de detección de fraude** entrenado con registros tabulares.
 - 🔁 **API de inferencia** en FastAPI para servir el modelo.
 - 💻 **Interfaz visual** que permite subir registros y obtener predicciones y explicaciones (con los explainers de SHAP) de las mismas en forma de lenguaje natural usando LLM.
 - 🐳 Contenedores Docker para un despliegue completo con `docker-compose`.
@@ -54,6 +54,8 @@ Esto levanta:
 api: servicio de inferencia (API/)
 
 inference_api: interfaz de usuario (inference_API/)
+
+VLLM: servicio para hacer llamadas al modelo de lenguaje.
 
 Accede a la interfaz desde tu navegador en http://localhost:8000 (o el puerto definido).
 
