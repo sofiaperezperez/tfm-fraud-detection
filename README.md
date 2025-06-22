@@ -3,25 +3,27 @@
 Este repositorio contiene el Trabajo de Fin de Máster (TFM) enfocado en la **detección automática de fraude en aperturas de cuentas bancarias** a partir de imágenes, usando técnicas de redes neuronales profundas y despliegue vía APIs.
 
 ---
-
 ## 📁 Estructura del Proyecto
-├── API/ # Backend de inferencia
-│ ├── inference_api.py # Código principal de la API
-│ ├── Dockerfile # Imagen Docker para la API
-│ ├── requirements.txt # Dependencias para la API
-│ └── artifacts/ # Pesos del modelo entrenado y encoder
-│ ├── model.pt
-│ └── encoder.pkl
-│ └── explainer.pkl
+
+```plaintext
+├── API/                        # Backend de inferencia
+│   ├── inference_api.py        # Código principal de la API
+│   ├── Dockerfile              # Imagen Docker para la API
+│   ├── requirements.txt        # Dependencias para la API
+│   └── artifacts/              # Pesos del modelo entrenado y encoder
+│       ├── model.pt
+│       ├── encoder.pkl
+│       └── explainer.pkl
 │
-├── inference_API/ # Interfaz cliente para consumir la API
-│ ├── web_app.py # Interfaz de usuario
-│ ├── Dockerfile # Imagen Docker para frontend
-│ └── requirements.txt # Dependencias para el frontend
+├── inference_API/             # Interfaz cliente para consumir la API
+│   ├── web_app.py              # Interfaz de usuario
+│   ├── Dockerfile              # Imagen Docker para frontend
+│   └── requirements.txt        # Dependencias para el frontend
 │
-├── tfm_modelo.ipynb # Notebook completo de entrenamiento
-├── docker-compose.yml # Orquestación de los contenedores
-└── README.md # Este archivo
+├── tfm_modelo.ipynb           # Notebook completo de entrenamiento
+├── docker-compose.yml         # Orquestación de los contenedores
+└── README.md                  # Este archivo
+```
 
 ## 🔍 Descripción
 
