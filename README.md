@@ -62,7 +62,7 @@ Accede a la interfaz desde tu navegador en http://localhost:8000 (o el puerto de
 🏋️‍♀️ Entrenamiento del modelo
 Todo el proceso de entrenamiento, validación y pruebas de hiperparámetros está documentado en:
 
-📓 tfm_training.ipynb
+📓 tfm_modelo.ipynb
 
 Incluye:
 Análisis exploratorio de variables
